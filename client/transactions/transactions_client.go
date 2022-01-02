@@ -46,7 +46,7 @@ type ClientService interface {
 
 	CreateOrAdjustTransaction(params *CreateOrAdjustTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOrAdjustTransactionOK, error)
 
-	CreateTransaction(params *CreateTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransactionOK, error)
+	CreateTransaction(params *CreateTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransactionCreated, error)
 
 	DeleteLines(params *DeleteLinesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteLinesOK, error)
 
@@ -684,7 +684,7 @@ NOTE: Avoid using the following strings in your transaction codes as they are en
 * This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.
 
 */
-func (a *Client) CreateTransaction(params *CreateTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransactionOK, error) {
+func (a *Client) CreateTransaction(params *CreateTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTransactionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateTransactionParams()
@@ -710,7 +710,7 @@ func (a *Client) CreateTransaction(params *CreateTransactionParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CreateTransactionOK)
+	success, ok := result.(*CreateTransactionCreated)
 	if ok {
 		return success, nil
 	}

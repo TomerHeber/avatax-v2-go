@@ -23,8 +23,8 @@ type CreateTransactionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateTransactionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewCreateTransactionOK()
+	case 201:
+		result := NewCreateTransactionCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -46,27 +46,27 @@ func (o *CreateTransactionReader) ReadResponse(response runtime.ClientResponse, 
 	}
 }
 
-// NewCreateTransactionOK creates a CreateTransactionOK with default headers values
-func NewCreateTransactionOK() *CreateTransactionOK {
-	return &CreateTransactionOK{}
+// NewCreateTransactionCreated creates a CreateTransactionCreated with default headers values
+func NewCreateTransactionCreated() *CreateTransactionCreated {
+	return &CreateTransactionCreated{}
 }
 
-/* CreateTransactionOK describes a response with status code 200, with default header values.
+/* CreateTransactionCreated describes a response with status code 201, with default header values.
 
-Success
+Created
 */
-type CreateTransactionOK struct {
+type CreateTransactionCreated struct {
 	Payload *models.TransactionModel
 }
 
-func (o *CreateTransactionOK) Error() string {
-	return fmt.Sprintf("[POST /api/v2/transactions/create][%d] createTransactionOK  %+v", 200, o.Payload)
+func (o *CreateTransactionCreated) Error() string {
+	return fmt.Sprintf("[POST /api/v2/transactions/create][%d] createTransactionCreated  %+v", 201, o.Payload)
 }
-func (o *CreateTransactionOK) GetPayload() *models.TransactionModel {
+func (o *CreateTransactionCreated) GetPayload() *models.TransactionModel {
 	return o.Payload
 }
 
-func (o *CreateTransactionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateTransactionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.TransactionModel)
 
