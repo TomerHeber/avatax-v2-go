@@ -238,10 +238,10 @@ type TransactionModel struct {
 	Summary []*TransactionSummary `json:"summary"`
 
 	// Tax date for this transaction
-	// Example: 2021-12-25T00:00:00+00:00
+	// Example: 2021-12-25
 	// Read Only: true
-	// Format: date-time
-	TaxDate strfmt.DateTime `json:"taxDate,omitempty"`
+	// Format: date
+	TaxDate strfmt.Date `json:"taxDate,omitempty"`
 
 	// Contains the tax details per tax type
 	// Example: [{"taxType":"SalesAndUse","totalExempt":0.05,"totalNonTaxable":0,"totalTax":0.625,"totalTaxable":100}]
@@ -833,7 +833,7 @@ func (m *TransactionModel) validateTaxDate(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.FormatOf("taxDate", "body", "date-time", m.TaxDate.String(), formats); err != nil {
+	if err := validate.FormatOf("taxDate", "body", "date", m.TaxDate.String(), formats); err != nil {
 		return err
 	}
 
@@ -1271,7 +1271,7 @@ func (m *TransactionModel) contextValidateSummary(ctx context.Context, formats s
 
 func (m *TransactionModel) contextValidateTaxDate(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "taxDate", "body", strfmt.DateTime(m.TaxDate)); err != nil {
+	if err := validate.ReadOnly(ctx, "taxDate", "body", strfmt.Date(m.TaxDate)); err != nil {
 		return err
 	}
 
