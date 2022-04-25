@@ -23992,7 +23992,7 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/ErrorTransactionOutputModel"
             }
           },
           "401": {
