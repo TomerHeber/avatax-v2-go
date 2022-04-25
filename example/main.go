@@ -13,8 +13,8 @@ import (
 )
 
 func main() {
-	basicAuth := httptransport.BasicAuth("username", "password")
-	r := httptransport.New("rest.avatax.com", "/api/v2", client.DefaultSchemes)
+	basicAuth := httptransport.BasicAuth("sys-int@humann.com", "Bp#NTVVt2!P^mi24")
+	r := httptransport.New("rest.avatax.com", "", client.DefaultSchemes)
 	r.DefaultAuthentication = basicAuth
 	r.Producers["application/*+json"] = runtime.JSONProducer()
 	c := client.New(r, strfmt.Default)
@@ -23,7 +23,7 @@ func main() {
 	defer cancel()
 
 	res, err := c.Transactions.GetTransactionByID(&transactions.GetTransactionByIDParams{
-		ID:      1000,
+		ID:      71000021743363,
 		Context: ctx,
 	}, nil)
 

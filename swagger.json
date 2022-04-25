@@ -23990,7 +23990,10 @@
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
           },
           "401": {
             "description": "Unauthorized"

@@ -88,13 +88,22 @@ func NewCreateTransactionBadRequest() *CreateTransactionBadRequest {
 Bad Request
 */
 type CreateTransactionBadRequest struct {
+	Payload string
 }
 
 func (o *CreateTransactionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /api/v2/transactions/create][%d] createTransactionBadRequest ", 400)
+	return fmt.Sprintf("[POST /api/v2/transactions/create][%d] createTransactionBadRequest  %+v", 400, o.Payload)
+}
+func (o *CreateTransactionBadRequest) GetPayload() string {
+	return o.Payload
 }
 
 func (o *CreateTransactionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
