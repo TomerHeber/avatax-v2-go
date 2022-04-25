@@ -103,7 +103,7 @@ func (o *CreateTransactionBadRequest) readResponse(response runtime.ClientRespon
 	o.Payload = make(map[string]interface{})
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
